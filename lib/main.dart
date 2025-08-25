@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie/screens/home/home_screen.dart';
+import 'package:movie/screens/onboarding/on_boarding.dart';
+import 'package:movie/screens/register/login/login_screen.dart';
 
 void main(){
   runApp(MyApp());
@@ -10,6 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: LoginScreen.routeName,
+      routes: {
+        OnboardingScreen.routeName:(_)=>OnboardingScreen(),
+        HomeScreen.routeName:(_)=>HomeScreen(),
+        LoginScreen.routeName:(_)=>LoginScreen(),
+      },
     );
   }
 }
