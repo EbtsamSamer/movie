@@ -1,189 +1,308 @@
+import 'package:easy_localization/easy_localization.dart' as login_with_google;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie/core/base.dart';
+import 'package:movie/screens/home/home_screen.dart';
+import 'package:movie/screens/register/login/connector.dart';
+import 'package:movie/screens/register/login/forget_password_screen.dart';
+import 'package:movie/screens/register/login/login_viewmodel.dart';
 import 'package:movie/screens/register/sign_up/sign_up.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../../../provider/userProvider.dart';
+
+class LoginScreen extends StatefulWidget {
   static const String routeName = "LoginScreen";
 
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+
+class _LoginScreenState extends BaseView<LoginScreen, LoginViewModel>
+    implements LoginConnector {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    viewModel?.connector = this;
+  }
+
+  late var userProvider = Provider.of<UserProvider>(context);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            SizedBox(height: 68),
-            Container(
-              alignment: Alignment.center,
-              child: Image.asset(
-                "assets/images/ic_splash.png",
-                fit: BoxFit.fill,
-                width: 200,
-              ),
-            ),
-            SizedBox(height: 24),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFF282A28),
-                prefixIcon: ImageIcon(
-                  AssetImage("assets/images/email_ic.png"),
-                  color: Colors.white,
+      body: ChangeNotifierProvider(
+        create: (context) => viewModel,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: [
+              SizedBox(height: 68),
+              Container(
+                alignment: Alignment.center,
+                child: Image.asset(
+                  "assets/images/ic_splash.png",
+                  fit: BoxFit.fill,
+                  width: 200,
                 ),
-                label: Text(
-                  "Email",
-                  style: GoogleFonts.inter(
+              ),
+              SizedBox(height: 24),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFF282A28),
+                  prefixIcon: ImageIcon(
+                    AssetImage("assets/images/email_ic.png"),
                     color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
                   ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            TextField(
-
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFF282A28),
-                prefixIcon: Icon(Icons.lock, color: Colors.white),
-                suffixIcon: Icon(Icons.remove_red_eye,color: Colors.white,),
-                label: Text(
-                  "Password",
-                  style: GoogleFonts.inter(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Container(
-              alignment: Alignment.centerRight,
-              child: Text(
-                "Forget Password?",
-                style: GoogleFonts.inter(
-                  color: Color(0xFFF6BD00),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-            SizedBox(height: 24),
-
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(400, 60),
-                backgroundColor: Color(0xFFF6BD00),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              onPressed: () {
-              },
-              child: Text(
-                "Login",
-                style: GoogleFonts.inter(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            SizedBox(height: 24),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Don’t Have Account ? ",
+                  label: Text(
+                    "email".tr(),
                     style: GoogleFonts.inter(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushNamed(context, SignUPScreen.routeName);
-                      },
-                    text: "Create One",
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFF282A28),
+                  prefixIcon: Icon(Icons.lock, color: Colors.white),
+                  suffixIcon: Icon(Icons.remove_red_eye, color: Colors.white),
+                  label: Text(
+                    "password".tr(),
                     style: GoogleFonts.inter(
-                      decoration: TextDecoration.underline,
-                      color: Color(0xFFF6BD00),
+                      color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 35),
-            Row(
-              children: [
-                Expanded(
-                  child: Divider(color: Color(0xFFF6BD00), indent: 20, endIndent: 24),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-                Text(
-                  "Or",
+              ),
+              SizedBox(height: 16),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, ForgetPasswordScreen.routeName);
+                },
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "forget_password?".tr(),
+                    style: GoogleFonts.inter(
+                      color: Color(0xFFF6BD00),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 24),
+
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(400, 60),
+                  backgroundColor: Color(0xFFF6BD00),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                onPressed: () {
+                  viewModel?.login(email: emailController.text,
+                      password: passwordController.text);
+                  userProvider.firebaseUser;
+                },
+                child: Text(
+                  "login".tr(),
                   style: GoogleFonts.inter(
-                    color: Color(0xFFF6BD00),
+                    color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Expanded(
-                  child: Divider(indent: 24, endIndent: 32, color: Color(0xFFF6BD00)),
-                ),
-              ],
-            ),
-            SizedBox(height: 35),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(400, 60),
-                backgroundColor: Color(0xFFF6BD00),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+              ),
+              SizedBox(height: 24),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "don't_have_account?".tr(),
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushNamed(context, SignUPScreen.routeName);
+                        },
+                      text: "create_one".tr(),
+                      style: GoogleFonts.inter(
+                        decoration: TextDecoration.underline,
+                        color: Color(0xFFF6BD00),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              onPressed: () {},
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(height: 35),
+              Row(
                 children: [
-                  ImageIcon(AssetImage("assets/images/google_ic.png")),
-                  SizedBox(width: 7),
+                  Expanded(
+                    child: Divider(
+                      color: Color(0xFFF6BD00),
+                      indent: 20,
+                      endIndent: 24,
+                    ),
+                  ),
                   Text(
-                    "Login With Google",
+                    "or".tr(),
                     style: GoogleFonts.inter(
-                      color: Colors.black,
+                      color: Color(0xFFF6BD00),
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
+                  Expanded(
+                    child: Divider(
+                      indent: 24,
+                      endIndent: 32,
+                      color: Color(0xFFF6BD00),
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
+              SizedBox(height: 35),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(400, 60),
+                  backgroundColor: Color(0xFFF6BD00),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ImageIcon(
+                      AssetImage("assets/images/google_ic.png"),
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 7),
+                    Text(
+                      "login_with_google".tr(),
+                      style: GoogleFonts.inter(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: 120,
+                height: 55,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(color: Color(0xFFF6BD00), width: 2),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        context.setLocale(Locale('en'));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35),
+                          border: Border.all(
+                            color: Color(0xFFF6BD00),
+                            width: 5,
+                            style: context.locale.toString() == "en"
+                                ? BorderStyle.solid
+                                : BorderStyle.none,
+                          ),
+                        ),
+                        child: Image.asset(
+                          "assets/images/am.png",
+                          width: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        context.setLocale(Locale('ar'));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35),
+                          border: Border.all(
+                            color: Color(0xFFF6BD00),
+                            width: 5,
+                            style: context.locale.toString() == "ar"
+                                ? BorderStyle.solid
+                                : BorderStyle.none,
+                          ),
+                        ),
+                        child: Image.asset(
+                          "assets/images/eg.png",
+                          width: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  @override
+  goToHome() {
+    Navigator.pushNamedAndRemoveUntil(
+        context, HomeScreen.routeName, (route)=>false);
+  }
+
+  @override
+  LoginViewModel initViewModel() {
+    return LoginViewModel();
   }
 }

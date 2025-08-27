@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie/screens/home/home_screen.dart';
-import 'package:movie/screens/onboarding/onboard_item.dart';
+import 'package:movie/models/onboard_item.dart';
 import 'package:movie/screens/onboarding/onboard_viewModel.dart';
 import 'package:movie/screens/register/login/login_screen.dart';
 
