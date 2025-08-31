@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/screens/home/home_screen.dart';
 import 'package:movie/screens/onboarding/on_boarding.dart';
-import 'package:movie/screens/register/login/forget_password_screen.dart';
-import 'package:movie/screens/register/login/login_screen.dart';
-import 'package:movie/screens/register/sign_up/sign_up.dart';
+import 'package:movie/screens/register/login/presentation/forget_password_screen.dart';
+import 'package:movie/screens/register/login/presentation/login_screen.dart';
+import 'package:movie/screens/register/sign_up/presentation/sign_up.dart';
 
 import 'firebase_options.dart';
 
@@ -17,7 +17,7 @@ void main() async{
   );
   runApp(EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
-      path: 'assets/translation', // <-- change the path of the translation files
+      path: 'assets/translation',
       fallbackLocale: Locale('en'),
       child: MyApp()));
 }

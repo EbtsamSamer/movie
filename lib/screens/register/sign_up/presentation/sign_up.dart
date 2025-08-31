@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie/models/user_request.dart';
+import 'package:movie/screens/register/sign_up/data/user_request.dart';
 import 'package:movie/screens/home/home_screen.dart';
-import 'package:movie/screens/register/sign_up/signup_viewModel.dart';
-import '../../../models/avater_model.dart';
-import '../../widgets/avatar_gallery.dart';
-import '../login/login_screen.dart';
+import 'package:movie/screens/register/sign_up/domain/signup_viewModel.dart';
+import '../data/avater_model.dart';
+import '../../../widgets/avatar_gallery.dart';
+import '../../login/presentation/login_screen.dart';
 
 class SignUPScreen extends StatefulWidget {
   static const String routeName = "SignUp";

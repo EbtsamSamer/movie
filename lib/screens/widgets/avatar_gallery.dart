@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/avater_model.dart';
+import '../register/sign_up/data/avater_model.dart';
 
 
 class AvatarGallery extends StatelessWidget {

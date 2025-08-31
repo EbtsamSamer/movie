@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie/models/onboard_item.dart';
+import 'package:movie/screens/onboarding/data/onboard_item.dart';
 
 class OnboardPageView extends StatelessWidget {
   final OnboardItem page;

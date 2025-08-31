@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie/screens/register/sign_up/connector.dart';
+import 'package:movie/screens/register/sign_up/domain/connector.dart';
 
-import '../../../models/user_request.dart';
+import '../data/user_request.dart';
 
 class SignUpViewModel {
   SignUP({
