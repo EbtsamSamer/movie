@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movie/screens/register/login/data/bloc/login_bloc.dart';
-import 'package:movie/screens/register/login/presentation/forget_password_screen.dart';
+import 'package:movie/screens/register/login/presentation/bloc/login_bloc.dart';
+import 'package:movie/screens/register/login/presentation/screens/forget_password_screen.dart';
 import 'package:movie/screens/register/sign_up/presentation/sign_up.dart';
-import '../../../home/home_screen.dart';
+import '../../../../home/home_screen.dart';
 
 
 class LoginScreen extends StatefulWidget {

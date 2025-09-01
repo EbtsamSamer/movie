@@ -7,7 +7,7 @@ import 'package:movie/screens/home/home_screen.dart';
 import 'package:movie/screens/register/sign_up/domain/signup_viewModel.dart';
 import '../data/avater_model.dart';
 import '../../../widgets/avatar_gallery.dart';
-import '../../login/presentation/login_screen.dart';
+import '../../login/presentation/screens/login_screen.dart';
 
 class SignUPScreen extends StatefulWidget {
   static const String routeName = "SignUp";

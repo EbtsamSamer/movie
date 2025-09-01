@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/screens/home/home_screen.dart';
-import 'package:movie/screens/onboarding/on_boarding.dart';
-import 'package:movie/screens/register/login/presentation/forget_password_screen.dart';
-import 'package:movie/screens/register/login/presentation/login_screen.dart';
+import 'package:movie/screens/onboarding/presentation/on_boarding.dart';
+import 'package:movie/screens/register/login/presentation/screens/forget_password_screen.dart';
+import 'package:movie/screens/register/login/presentation/screens/login_screen.dart';
 import 'package:movie/screens/register/sign_up/presentation/sign_up.dart';
 
 import 'firebase_options.dart';
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      initialRoute: OnboardingScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
         OnboardingScreen.routeName:(_)=>OnboardingScreen(),
         HomeScreen.routeName:(_)=>HomeScreen(),
