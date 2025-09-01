@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 24),
                     TextField(
+                      style: TextStyle(color: Colors.white),
                       controller: emailController,
                       decoration: InputDecoration(
                         filled: true,
@@ -77,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 16),
                     TextField(
+                      style: TextStyle(color: Colors.white),
                       controller: passwordController,
                       decoration: InputDecoration(
                         filled: true,

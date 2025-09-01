@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie/screens/home/home_screen.dart';
+import 'package:movie/screens/home/tabs/profile/presentation/screens/update_pro.dart';
 import 'package:movie/screens/home/tabs/profile/presentation/widgets/history_item.dart';
 
 class Profile extends StatelessWidget {
@@ -59,7 +61,9 @@ class Profile extends StatelessWidget {
                         ),
                         padding: EdgeInsets.all(12),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, UpdateProfile.routeName);
+                      },
                       child: Text(
                         "Edit Profile",
                         style: GoogleFonts.roboto(
@@ -82,7 +86,9 @@ class Profile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, HomeScreen.routeName);
+                    },
                     child: Row(
                       children: [
                         Text(

@@ -25,6 +25,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           children: [
           Image.asset("assets/images/forget_bg.png"),
           TextField(
+            style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               filled: true,
               fillColor: Color(0xFF282A28),

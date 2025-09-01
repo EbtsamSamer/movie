@@ -71,6 +71,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               SizedBox(height: 24),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Name is Required";
@@ -104,6 +105,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Phone is Required";
@@ -138,6 +140,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -179,6 +182,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 controller: passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -215,6 +219,7 @@ class _SignUPScreenState extends State<SignUPScreen> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Re Password is Required";

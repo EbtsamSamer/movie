@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/screens/home/home_screen.dart';
+import 'package:movie/screens/home/tabs/profile/presentation/screens/update_pro.dart';
 import 'package:movie/screens/onboarding/presentation/on_boarding.dart';
 import 'package:movie/screens/register/login/presentation/screens/forget_password_screen.dart';
 import 'package:movie/screens/register/login/presentation/screens/login_screen.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName:(_)=>LoginScreen(),
         SignUPScreen.routeName:(_)=>SignUPScreen(),
         ForgetPasswordScreen.routeName:(_)=>ForgetPasswordScreen(),
+        UpdateProfile.routeName:(_)=>UpdateProfile(),
 
       },
     );
